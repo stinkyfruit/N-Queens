@@ -152,9 +152,9 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var firstRowIndex;
       var i;
       var j;
+      var firstRowIndex;
       var allRows = this.rows();
 
       //find elements on the chessboard using 2 loops
@@ -182,12 +182,41 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //get all rows and setup variables for iterators and sum (set to sum to 0 by default to prevent NaN)
+      var i;
+      var sum = 0;
+      var allRows = this.rows();
+      //iterate over allRows moving from top to bottom of chessboard. Our iterator, i is equal to the current row
+      for(i = 0; i < allRows.length; i++){
+        //check to see if our future index (minorDiagonalC... - 1) is a valid array key
+        if(minorDiagonalColumnIndexAtFirstRow - i >= 0){
+          //if there is a chess piece (1) add it to our sum of chess pieces
+          sum += allRows[i][minorDiagonalColumnIndexAtFirstRow - i];
+        }
+      }
+      //return a boolean value that checks sum for more than one piece in a diagonal
+      return sum > 1;
     },
-
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      //get all rows and setup variables for iterators
+      var i;
+      var j;
+      var firstRowIndex;
+      var allRows = this.rows();
+      //loop through array of all rows
+      for(i = 0; i < allRows.length; i++){
+        //loop through each individual row
+        for(j = 0; j < allRows[i].length; j++){
+          //calculate beginning index value by adding iterators that represent column and row
+          firstRowIndex = j + i;
+          //compare array values to one and if found run hasMinorDiagonalConflictAt
+          if(allRows[i][j] === 1 && this.hasMinorDiagonalConflictAt(firstRowIndex)){
+            return true;
+          }
+        }
+      }
+      return false;
     },
 
     /*--------------------  End of Helper Functions  ---------------------*/
