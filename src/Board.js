@@ -97,7 +97,6 @@
       }
       return false;
     },
-    //[ [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0] ]
 
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
@@ -137,8 +136,6 @@
       var i;
       var sum = 0;
       var allRows = this.rows();
-
-      this.pictureArray();
       //loop over the outer arrays
       for(i = 0; i < allRows.length; i++) {
         //sum the result of the column index incremented by 1 for each row
@@ -222,7 +219,7 @@
     /*--------------------  End of Helper Functions  ---------------------*/
 
 
-    pictureArray: function(){
+    logBoard: function(){
       var allRows = this.rows();
 
       for(var k = 0; k < allRows.length; k++){
