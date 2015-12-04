@@ -139,7 +139,7 @@
       //loop over the outer arrays
       for(i = 0; i < allRows.length; i++) {
         //sum the result of the column index incremented by 1 for each row
-        if(majorDiagonalColumnIndexAtFirstRow + i < allRows[i].length){
+        if(allRows[i][majorDiagonalColumnIndexAtFirstRow + i] !== undefined){
           sum += allRows[i][majorDiagonalColumnIndexAtFirstRow + i];
         }
       }
@@ -186,7 +186,7 @@
       //iterate over allRows moving from top to bottom of chessboard. Our iterator, i is equal to the current row
       for(i = 0; i < allRows.length; i++){
         //check to see if our future index (minorDiagonalC... - 1) is a valid array key
-        if(minorDiagonalColumnIndexAtFirstRow - i >= 0){
+        if(allRows[i][minorDiagonalColumnIndexAtFirstRow - i] !== undefined){
           //if there is a chess piece (1) add it to our sum of chess pieces
           sum += allRows[i][minorDiagonalColumnIndexAtFirstRow - i];
         }
